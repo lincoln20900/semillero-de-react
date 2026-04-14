@@ -1,14 +1,9 @@
 import { Router } from 'express';
+import { register } from './handlers/index.js';
 
-const router = Router();    
+const router = Router();
 
-// routing :
-
-router.post('/auth/register', (req, res) => {
-    res.json({ message: 'Desde register, lo envia res.json!...', data: req.body });
-    console.log('Desde register!...');
-    console.log(req.body);
-})
-
+// Routing for authentication and register
+router.post('/auth/register', register);
 
 export default router;
