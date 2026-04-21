@@ -5,6 +5,7 @@ export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
+  handle: string;
   age?: number;
   createdAt: Date;
 }
@@ -24,6 +25,11 @@ const userSchema = new Schema<IUser>(
     password: {
       type: String,
       required: [true, 'La contraseña es obligatoria'],
+    },
+    handle: {
+      type: String,
+      required: [true, 'El handle es obligatorio'],
+      unique: true,
     },
     age: {
       type: Number,
