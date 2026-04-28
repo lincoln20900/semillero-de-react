@@ -1,18 +1,10 @@
 import { Request, Response } from 'express';
-import { validationResult } from 'express-validator';
 import { User } from '../models/User.js';
 import { encryptPassword, comparePassword } from '../utils/auth.js';
 import slug from 'slug';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
-    // Validar que no haya errores de validación
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      res.status(400).json({ errors: errors.array() });
-      return;
-    }
-
     const { name, email, password, age } = req.body;
 
     // Verificar si el usuario ya existe por email
@@ -70,13 +62,6 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
-    // Validar que no haya errores de validación
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      res.status(400).json({ errors: errors.array() });
-      return;
-    }
-
     const { email, password } = req.body;
 
     // Verificar si el usuario existe

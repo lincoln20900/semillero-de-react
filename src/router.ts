@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
 import { register, login } from './handlers/index.js';
+import { validateRequest } from './middleware/validation.js';
 
 const router = Router();
 
@@ -36,7 +37,7 @@ const loginValidation = [
 ];
 
 // Routing for authentication and register
-router.post('/auth/register', registerValidation, register);
-router.post('/auth/login', loginValidation, login);
+router.post('/auth/register', registerValidation, validateRequest, register);
+router.post('/auth/login', loginValidation, validateRequest, login);
 
 export default router;
